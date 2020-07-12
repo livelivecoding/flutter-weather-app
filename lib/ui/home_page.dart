@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:weatherflut/ui/cities/cities_page.dart';
+import 'package:weatherflut/ui/ui_constants.dart';
 
 class HomePage extends StatelessWidget {
   void handleNavigatePress(BuildContext context) {
     Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (_) => CitiesPage()
-      ),
+      MaterialPageRoute(builder: (_) => CitiesPage()),
     );
   }
 
@@ -25,7 +24,7 @@ class HomePage extends StatelessWidget {
             child: Center(
               child: Container(
                 constraints: BoxConstraints(
-                  maxWidth: 250.0,
+                  maxWidth: maxPageWidth,
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
