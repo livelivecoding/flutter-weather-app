@@ -28,18 +28,19 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return AnimatedBuilder(
-        animation: bloc,
-        builder: (context, child) {
-          return Scaffold(
-            body: bloc.cities.isEmpty
-                ? EmptyWidget(
-                    onTap: () => handleNavigatePress(context),
-                  )
-                : WeathersWidget(
-                    cities: bloc.cities,
-                    onTap: () => handleNavigatePress(context),
-                  ),
-          );
-        });
+      animation: bloc,
+      builder: (context, child) {
+        return Scaffold(
+          body: bloc.cities.isEmpty
+              ? EmptyWidget(
+                  onTap: () => handleNavigatePress(context),
+                )
+              : WeathersWidget(
+                  cities: bloc.cities,
+                  onTap: () => handleNavigatePress(context),
+                ),
+        );
+      },
+    );
   }
 }
