@@ -14,6 +14,7 @@ class EmptyWidget extends StatelessWidget {
         Positioned.fill(
           child: Image.asset(
             'assets/welcome.jpg',
+            fit: BoxFit.cover,
           ),
         ),
         SafeArea(
