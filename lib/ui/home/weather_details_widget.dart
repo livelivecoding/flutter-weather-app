@@ -55,7 +55,8 @@ class WeatherDetailsWidget extends StatelessWidget {
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 10.0),
                                   child: Image.network(
                                     'https://www.metaweather.com/static/img/weather/png/64/${weather.weatherStateAbbr}.png',
                                     height: 25,

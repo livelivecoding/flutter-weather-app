@@ -22,7 +22,9 @@ class City {
     return City(
       id: map['woeid'],
       title: map['title'],
-      weathers: myWeathers != null ? (myWeathers as List).map((e) => Weather.fromJson(e)).toList() : null,
+      weathers: myWeathers != null
+          ? (myWeathers as List).map((e) => Weather.fromJson(e)).toList()
+          : null,
     );
   }
 

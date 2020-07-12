@@ -6,7 +6,8 @@ class LoaderWidget extends StatefulWidget {
   _LoaderWidgetState createState() => _LoaderWidgetState();
 }
 
-class _LoaderWidgetState extends State<LoaderWidget> with SingleTickerProviderStateMixin {
+class _LoaderWidgetState extends State<LoaderWidget>
+    with SingleTickerProviderStateMixin {
   AnimationController _controller;
 
   @override
