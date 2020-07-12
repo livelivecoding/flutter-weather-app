@@ -30,7 +30,8 @@ class AddCityBloc extends ChangeNotifier {
 
     final url = '${api}search/?query=$text';
     final response = await http.get(url);
-    final data = jsonDecode(response.body) as List;
+    final body = Utf8Decoder().convert(response.bodyBytes);
+    final data = jsonDecode(body) as List;
 
     loading = false;
     cities = data.map((e) => City.fromJson(e)).toList();
@@ -42,7 +43,8 @@ class AddCityBloc extends ChangeNotifier {
     notifyListeners();
     final url = '$api${city.id}';
     final response = await http.get(url);
-    final data = jsonDecode(response.body);
+    final body = Utf8Decoder().convert(response.bodyBytes);
+    final data = jsonDecode(body);
     final weatherData = data['consolidated_weather'] as List;
     final weathers = weatherData.map((e) => Weather.fromJson(e)).toList();
     final newCity = city.fromWeathers(weathers);
