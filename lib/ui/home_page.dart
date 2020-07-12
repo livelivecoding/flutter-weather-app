@@ -3,7 +3,6 @@ import 'package:weatherflut/ui/cities/cities_bloc.dart';
 import 'package:weatherflut/ui/cities/cities_page.dart';
 import 'package:weatherflut/ui/home/empty_widget.dart';
 import 'package:weatherflut/ui/home/weathers_widget.dart';
-import 'package:weatherflut/ui/ui_constants.dart';
 
 class HomePage extends StatefulWidget {
   @override
