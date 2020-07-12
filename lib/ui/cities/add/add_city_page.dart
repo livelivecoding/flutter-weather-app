@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:weatherflut/model/city.dart';
 import 'package:weatherflut/ui/cities/add/add_city_bloc.dart';
 import 'package:weatherflut/ui/common/header_widget.dart';
 import 'package:weatherflut/ui/common/loader_widget.dart';
@@ -11,6 +12,13 @@ class AddCityPage extends StatefulWidget {
 
 class _AddCityPageState extends State<AddCityPage> {
   final bloc = AddCityBloc();
+
+  void handleAddTap(City city) async {
+    final result = await bloc.addCity(city);
+    if (result) {
+      Navigator.of(context).pop();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -79,7 +87,7 @@ class _AddCityPageState extends State<AddCityPage> {
                             color: primaryColor,
                           ),
                           onPressed: () {
-                            bloc.addCity(city);
+                            handleAddTap(city);
                           },
                         ),
                       );

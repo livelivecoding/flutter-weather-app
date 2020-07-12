@@ -18,9 +18,11 @@ class City {
       };
 
   factory City.fromJson(Map<String, dynamic> map) {
+    final myWeathers = map['weathers'];
     return City(
       id: map['woeid'],
       title: map['title'],
+      weathers: myWeathers != null ? (myWeathers as List).map((e) => Weather.fromJson(e)).toList() : null,
     );
   }
 

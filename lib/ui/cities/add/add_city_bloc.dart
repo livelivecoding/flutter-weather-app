@@ -37,7 +37,7 @@ class AddCityBloc extends ChangeNotifier {
     notifyListeners();
   }
 
-  void addCity(City city) async {
+  Future<bool> addCity(City city) async {
     loading = true;
     notifyListeners();
     final url = '$api${city.id}';
@@ -49,10 +49,13 @@ class AddCityBloc extends ChangeNotifier {
     try {
       await storage.saveCity(newCity);
       errorMessage = null;
+      return true;
     } on Exception catch (ex) {
+      print(ex.toString());
       errorMessage = ex.toString();
+      loading = false;
+      notifyListeners();
+      return false;
     }
-    loading = false;
-    notifyListeners();
   }
 }
