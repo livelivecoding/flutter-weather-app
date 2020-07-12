@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:weatherflut/model/city.dart';
@@ -70,9 +72,10 @@ class _WeathersWidgetState extends State<WeathersWidget> {
           itemBuilder: (context, index) {
             final city = widget.cities[index];
             double opacity = (index - page).abs();
+            opacity = lerpDouble(1.0, 0.7, opacity);
             if (opacity > 1) opacity = 1;
             return Opacity(
-              opacity: 1, //opacity: (index == page.toInt()) ? 1 : 1 - opacity,
+              opacity: opacity,
               child: WeatherItem(
                 city: city,
                 onTap: () => handleArrowPressed(city),
