@@ -83,39 +83,44 @@ class _CitiesPageState extends State<CitiesPage> {
               color: Colors.black,
             ),
           ),
-          floatingActionButton: FloatingActionButton(
-            child: Icon(Icons.add),
-            backgroundColor: primaryColor,
-            onPressed: () => handleNavigatePress(context),
+          floatingActionButton: Padding(
+            padding: const EdgeInsets.only(bottom: 20.0),
+            child: FloatingActionButton(
+              child: Icon(Icons.add),
+              backgroundColor: primaryColor,
+              onPressed: () => handleNavigatePress(context),
+            ),
           ),
-          body: Padding(
-            padding: const EdgeInsets.all(25),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
-                HeaderWidget(
-                  title: 'Mis ciudades',
-                ),
-                Expanded(
-                  child: bloc.cities.isEmpty
-                      ? Center(
-                          child: Text('No tienes ciudades :('),
-                        )
-                      : ListView.builder(
-                          padding: const EdgeInsets.only(
-                            bottom: 20,
+          body: Center(
+            child: Padding(
+              padding: const EdgeInsets.all(25),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: <Widget>[
+                  HeaderWidget(
+                    title: 'Mis ciudades',
+                  ),
+                  Expanded(
+                    child: bloc.cities.isEmpty
+                        ? Center(
+                            child: Text('No tienes ciudades :('),
+                          )
+                        : ListView.builder(
+                            padding: const EdgeInsets.only(
+                              bottom: 20,
+                            ),
+                            itemCount: bloc.cities.length,
+                            itemBuilder: (context, index) {
+                              final city = bloc.cities[index];
+                              return CityItem(
+                                city: city,
+                                onTap: () => handleDeleteTap(city),
+                              );
+                            },
                           ),
-                          itemCount: bloc.cities.length,
-                          itemBuilder: (context, index) {
-                            final city = bloc.cities[index];
-                            return CityItem(
-                              city: city,
-                              onTap: () => handleDeleteTap(city),
-                            );
-                          },
-                        ),
-                ),
-              ],
+                  ),
+                ],
+              ),
             ),
           ),
         );

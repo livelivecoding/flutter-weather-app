@@ -44,15 +44,28 @@ class _WeathersWidgetState extends State<WeathersWidget> {
   Widget build(BuildContext context) {
     final weather = widget.cities[_currentIndex].weathers.first;
     return Stack(
+      fit: StackFit.expand,
       children: [
-        AnimatedSwitcher(
-          duration: Duration(
-            milliseconds: 600,
-          ),
-          child: Image.asset(
-            'assets/background_states/${weather.weatherStateAbbr}.jpg',
-            fit: BoxFit.cover,
-            key: Key(weather.weatherStateAbbr),
+        Positioned.fill(
+          child: AnimatedSwitcher(
+            layoutBuilder: (currentChild, previousChildren) {
+              return Stack(
+                fit: StackFit.expand,
+                children: <Widget>[
+                  ...previousChildren,
+                  if (currentChild != null) currentChild,
+                ],
+                alignment: Alignment.center,
+              );
+            },
+            duration: Duration(
+              milliseconds: 600,
+            ),
+            child: Image.asset(
+              'assets/background_states/${weather.weatherStateAbbr}.jpg',
+              fit: BoxFit.cover,
+              key: Key(weather.weatherStateAbbr),
+            ),
           ),
         ),
         PageView.builder(
@@ -196,17 +209,20 @@ class WeatherItem extends StatelessWidget {
               const SizedBox(
                 height: 70,
               ),
-              Center(
-                child: IconButton(
-                  onPressed: onTap,
-                  icon: Icon(
-                    Icons.keyboard_arrow_up,
-                    color: Colors.white,
-                    size: 40,
-                  ),
-                ),
-              ),
             ],
+          ),
+        ),
+        Center(
+          child: Padding(
+            padding: const EdgeInsets.only(top: 30.0),
+            child: IconButton(
+              onPressed: onTap,
+              icon: Icon(
+                Icons.keyboard_arrow_up,
+                color: Colors.white,
+                size: 50,
+              ),
+            ),
           ),
         ),
         Align(
