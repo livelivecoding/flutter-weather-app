@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:weatherflut/data/data_constants.dart';
 import 'package:weatherflut/model/city.dart';
 
 final dayFormat = DateFormat('EEEE');
@@ -58,7 +59,7 @@ class WeatherDetailsWidget extends StatelessWidget {
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 10.0),
                                   child: Image.network(
-                                    'https://www.metaweather.com/static/img/weather/png/64/${weather.weatherStateAbbr}.png',
+                                    '${server}static/img/weather/png/64/${weather.weatherStateAbbr}.png',
                                     height: 25,
                                   ),
                                 ),
