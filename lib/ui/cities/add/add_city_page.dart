@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:weatherflut/data/repository/api_repository.dart';
+import 'package:weatherflut/data/repository/store_repository.dart';
 import 'package:weatherflut/model/city.dart';
 import 'package:weatherflut/ui/cities/add/add_city_bloc.dart';
 import 'package:weatherflut/ui/common/header_widget.dart';
@@ -11,13 +14,22 @@ class AddCityPage extends StatefulWidget {
 }
 
 class _AddCityPageState extends State<AddCityPage> {
-  final bloc = AddCityBloc();
+  AddCityBloc bloc;
 
   void handleAddTap(City city) async {
     final result = await bloc.addCity(city);
     if (result) {
       Navigator.of(context).pop();
     }
+  }
+
+  @override
+  void initState() {
+    bloc = AddCityBloc(
+      storage: context.read<StoreRepository>(),
+      apiService: context.read<ApiRepository>(),
+    );
+    super.initState();
   }
 
   @override

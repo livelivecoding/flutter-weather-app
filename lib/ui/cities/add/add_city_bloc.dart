@@ -1,20 +1,21 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:weatherflut/data/data_constants.dart';
-import 'package:weatherflut/data/repository/store_impl.dart';
+import 'package:weatherflut/data/repository/api_repository.dart';
 import 'package:weatherflut/data/repository/store_repository.dart';
 import 'package:weatherflut/model/city.dart';
-import 'package:weatherflut/model/weather.dart';
 import 'package:weatherflut/ui/common/debouncer.dart';
-import 'package:http/http.dart' as http;
 
 class AddCityBloc extends ChangeNotifier {
   final debouncer = Debouncer();
-  final StoreRepository storage = StoreImpl();
+  final StoreRepository storage;
+  final ApiRepository apiService;
   List<City> cities = [];
   bool loading = false;
   String errorMessage;
+
+  AddCityBloc({
+    @required this.storage,
+    @required this.apiService,
+  });
 
   void onChangedText(String text) {
     debouncer.run(
@@ -28,26 +29,16 @@ class AddCityBloc extends ChangeNotifier {
     loading = true;
     notifyListeners();
 
-    final url = '${api}search/?query=$text';
-    final response = await http.get(url);
-    final body = Utf8Decoder().convert(response.bodyBytes);
-    final data = jsonDecode(body) as List;
+    cities = await apiService.getCities(text);
 
     loading = false;
-    cities = data.map((e) => City.fromJson(e)).toList();
     notifyListeners();
   }
 
   Future<bool> addCity(City city) async {
     loading = true;
     notifyListeners();
-    final url = '$api${city.id}';
-    final response = await http.get(url);
-    final body = Utf8Decoder().convert(response.bodyBytes);
-    final data = jsonDecode(body);
-    final weatherData = data['consolidated_weather'] as List;
-    final weathers = weatherData.map((e) => Weather.fromJson(e)).toList();
-    final newCity = city.fromWeathers(weathers);
+    final newCity = await apiService.getWeathers(city);
     try {
       await storage.saveCity(newCity);
       errorMessage = null;

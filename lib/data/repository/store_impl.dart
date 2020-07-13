@@ -5,6 +5,7 @@ import 'package:weatherflut/model/city.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 const keyCities = 'cities';
+const keyLastUpdate = 'last_update';
 
 class StoreImpl extends StoreRepository {
   @override
@@ -38,5 +39,37 @@ class StoreImpl extends StoreRepository {
       keyCities,
       list.map((e) => jsonEncode(e.toJson())).toList(),
     );
+  }
+
+  @override
+  Future<void> saveCities(List<City> cities) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setStringList(
+      keyCities,
+      cities.map((e) => jsonEncode(e.toJson())).toList(),
+    );
+  }
+
+  @override
+  Future<DateTime> getLastUpdate() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    final data = prefs.getInt(keyLastUpdate);
+    if (data != null && data > 0) {
+      return DateTime.fromMillisecondsSinceEpoch(data);
+    }
+    return null;
+  }
+
+  @override
+  Future<void> saveLastUpdate() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setInt(keyLastUpdate, DateTime.now().millisecondsSinceEpoch);
+  }
+
+  @override
+  Future<void> deleteCity(City city) async {
+    final cities = await getCities();
+    cities.removeWhere((element) => element.id == city.id);
+    saveCities(cities);
   }
 }
