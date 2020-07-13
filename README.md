@@ -11,4 +11,4 @@ Contributors:
 
 ## Instalador
 
-Pueden descargar el instalador aquí: https://drive.google.com/file/d/15kz4Bc1skXsodQ5syEdRYa-SyE0-gm4g/view?usp=sharing
+Pueden descargar el instalador aquí: https://drive.google.com/file/d/1h5r6S7lg6kmy4wwwepnAyTryvmos2KHJ/view?usp=sharing
