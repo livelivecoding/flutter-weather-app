@@ -1,16 +1,14 @@
-# weatherflut
+# Weatherflut
 
-A new Flutter project.
+Es un proyecto creado en el live streaming que se hizo en el canal de Leonidas Esteban, luego fue terminado en el canal de The Dart Side.
 
-## Getting Started
+Contributors:
 
-This project is a starting point for a Flutter application.
+- Diego Velásquez - @diegoveloper
+- Argel Bejarano - @ArkangelB
+- Leonidas Esteban - @LeonidasEsteban
+- Mauricio Lopez (UX) - https://www.behance.net/designylove
 
-A few resources to get you started if this is your first Flutter project:
+## Instalador
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Pueden descargar el instalador aquí: https://drive.google.com/file/d/15kz4Bc1skXsodQ5syEdRYa-SyE0-gm4g/view?usp=sharing
